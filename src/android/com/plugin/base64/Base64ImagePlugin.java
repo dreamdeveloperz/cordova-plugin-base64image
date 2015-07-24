@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tcs.base64;
+package com.plugin.base64;
 
 import android.os.Environment;
 import android.util.Log;
