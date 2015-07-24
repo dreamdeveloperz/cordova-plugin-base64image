@@ -3,8 +3,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:amazon="http://schemas.android.com/apk/lib/com.amazon.device.ads"
         xmlns:rim="http://www.blackberry.com/ns/widgets"
-        id="com.tcs.base64.Base64ImagePlugin"
-        version="2.4.0">
+        id="com.plugin.base64.Base64ImagePlugin"
+        version="1.0.0">
 
     <name>Base64ImagePlugin</name>
     <author>Madan Kumar</author>
