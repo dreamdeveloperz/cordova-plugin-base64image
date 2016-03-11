@@ -73,8 +73,8 @@ public class Base64ImagePlugin extends CordovaPlugin {
 
             String storagetype = params.has("externalStorage") ? Environment.getExternalStorageDirectory() + "" : getApplicationContext().getFilesDir().getAbsolutePath();
 
-            String folder = params.has("folder") ? params.getString("folder") : storagetype + "/Pictures/Weave";
-
+            String folder = params.has("folder") ? storagetype + "/" + params.getString("folder") : storagetype + "/Pictures/Weave";
+            
             Boolean overwrite = params.has("overwrite") ? params.getBoolean("overwrite") : false;
 
             result = this.saveImage(b64String, filename, folder, overwrite, callbackContext);
