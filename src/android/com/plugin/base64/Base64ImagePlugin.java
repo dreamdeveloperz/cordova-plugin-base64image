@@ -115,7 +115,7 @@ public class Base64ImagePlugin extends CordovaPlugin {
             fOut.write(decodedBytes);
             fOut.close();
             Log.v(TAG, "Saved successfully");
-            callbackContext.success("Saved successfully!");
+            callbackContext.success(file.getPath());
 //            return new PluginResult(PluginResult.Status.OK, "Saved successfully!");
             result = true;
 
