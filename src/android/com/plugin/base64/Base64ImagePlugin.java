@@ -82,7 +82,7 @@ public class Base64ImagePlugin extends CordovaPlugin {
 
         }else if(action.equals("convertImageToBase64FromUrl")){
             try{
-                String[] imageUrls=data.getJSONArray(0);
+                JSONArray imageUrls=data.getJSONArray(0);
                 result=this.convertImageToBase64FromUrl(imageUrls,callbackContext);
             }catch (JSONException e) {
             Log.v(TAG, e.getMessage());
@@ -146,13 +146,15 @@ public class Base64ImagePlugin extends CordovaPlugin {
         }
         return result;
     }
-     private boolean convertImageToBase64FromUrl(String[] imageUrls, CallbackContext callbackContext) {
+     private boolean convertImageToBase64FromUrl(JSONArray imageUrls, CallbackContext callbackContext) {
         boolean result = false;
-        String[] base64StringArray=new String[imageUrls.length()];
+        JSONArray base64StringArray=new JSONArray();
+        //String[] base64StringArray=new String[imageUrls.length()];
         try {
 
-            for(int i=0;i<imageUrls.length();i++){
-                String fileUrl=imageUrls[i];
+            for(int i=0;i<imageUrls.length;i++){
+                JSONObject object = imageUrls.getJSONObject(i);
+                String fileUrl=object.getString("url");
 
                 File file=new File(fileUrl);
                   
@@ -174,7 +176,9 @@ public class Base64ImagePlugin extends CordovaPlugin {
                 case "gif":base64String="data:image/gif;base64,"+base64String;
                 break;
                 }
-                base64StringArray[i]=base64String;
+                JSONObject object=new JSONObject();
+                object.put("url", base64String);
+                base64StringArray.put(object);
 
             }
           callbackContext.success(base64StringArray);
