@@ -46,13 +46,8 @@ public class Base64ImagePlugin extends CordovaPlugin {
         boolean result = false;
         Log.v(TAG, "execute: action=" + action);
 //        Context context = getContext();
-        if (!action.equals("saveImage")) {
-
-            callbackContext.error("Invalid action : " + action);
-            result = false;
-        }
-
-        try {
+        if(action.equals("saveImage")){
+             try {
             Log.v(TAG, data.getString(0));
             Log.v(TAG, data.getJSONObject(1).toString());
             String b64String = data.getString(0);
@@ -84,6 +79,25 @@ public class Base64ImagePlugin extends CordovaPlugin {
             callbackContext.error("Exception :" + e.getMessage());
             result = false;
         }
+
+        }else if(action.equals("convertImageToBase64FromUrl")){
+            try{
+                String[] imageUrls=data.getJSONArray(0);
+                result=this.convertImageToBase64FromUrl(imageUrls,callbackContext);
+            }catch (JSONException e) {
+            Log.v(TAG, e.getMessage());
+            callbackContext.error("Exception :" + e.getMessage());
+            result = false;
+        }
+
+        }
+        else{
+
+            callbackContext.error("Invalid action : " + action);
+            result = false;
+        }
+
+       
         return result;
     }
 
@@ -132,6 +146,53 @@ public class Base64ImagePlugin extends CordovaPlugin {
         }
         return result;
     }
+     private boolean convertImageToBase64FromUrl(String[] imageUrls, CallbackContext callbackContext) {
+        boolean result = false;
+        String[] base64StringArray=new String[imageUrls.length()];
+        try {
+
+            for(int i=0;i<imageUrls.length();i++){
+                String fileUrl=imageUrls[i];
+
+                File file=new File(fileUrl);
+                  
+                byte[] bFile = new byte[(int) file.length()];
+
+                FileInputStream inputstream=new FileInputStream(file);
+            
+                inputstream.read(bFile);
+                inputstream.close();
+                String base64String=Base64.encodeBase64String(bFile);
+                String filename=file.getName()
+                int extensionIndex = filename.lastIndexOf(".");
+                String extension = filename.substring(extensionIndex + 1);
+                switch (extension) {
+                case "jpeg":base64String="data:image/jpeg;base64,"+base64String;
+                break;
+                case "png":base64String="data:image/png;base64,"+base64String;
+                break;
+                case "gif":base64String="data:image/gif;base64,"+base64String;
+                break;
+                }
+                base64StringArray[i]=base64String;
+
+            }
+          callbackContext.success(base64StringArray);
+
+        } catch (FileNotFoundException e) {
+            Log.v(TAG, "File not Found");
+//            return new PluginResult(PluginResult.Status.ERROR, "File not Found!");
+            callbackContext.error("File not Found!");
+            result = false;
+        } catch (IOException e) {
+            Log.v(TAG, e.getMessage());
+//            return new PluginResult(PluginResult.Status.ERROR, e.getMessage());
+            callbackContext.error("Exception :" + e.getMessage());
+            result = false;
+        }
+        return result;
+    }
+
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
