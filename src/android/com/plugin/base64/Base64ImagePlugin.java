@@ -201,6 +201,10 @@ public class Base64ImagePlugin extends CordovaPlugin {
 //            return new PluginResult(PluginResult.Status.ERROR, e.getMessage());
             callbackContext.error("Exception :" + e.getMessage());
             result = false;
+        }catch (JSONException e) {
+            Log.v(TAG, e.getMessage());
+            callbackContext.error("Exception :" + e.getMessage());
+            result = false;
         }
         return result;
     }
