@@ -153,7 +153,7 @@ public class Base64ImagePlugin extends CordovaPlugin {
         //String[] base64StringArray=new String[imageUrls.length()];
         try {
 
-            for(int i=0;i<imageUrls.length;i++){
+            for(int i=0;i<imageUrls.length();i++){
                 JSONObject imageObject = imageUrls.getJSONObject(i);
                 String fileUrl=imageObject.getString("url");
 
