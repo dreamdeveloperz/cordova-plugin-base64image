@@ -157,7 +157,7 @@ public class Base64ImagePlugin extends CordovaPlugin {
 Log.v(TAG, "array count ---"+imageUrls.length());
             for(int i=0;i<imageUrls.length();i++){
                 Log.v(TAG, "start 1");
-                Log.v(TAG,imageUrls.getJSONObject(i))
+                Log.v(TAG,imageUrls.getJSONObject(i));
                 JSONObject imageObject = imageUrls.getJSONObject(i);
                 Log.v(TAG, "start 2");
                 String fileUrl=imageObject.getString("url");
