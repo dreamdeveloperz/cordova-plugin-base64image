@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileInputStream
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.apache.commons.codec.binary.Base64;
