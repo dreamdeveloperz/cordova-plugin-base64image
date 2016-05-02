@@ -76,6 +76,7 @@ public class Base64ImagePlugin extends CordovaPlugin {
             result = this.saveImage(b64String, filename, folder, overwrite, callbackContext);
 
         } catch (JSONException e) {
+             Log.v(TAG, "Exception from json in save image action");
             Log.v(TAG, e.getMessage());
             callbackContext.error("Exception :" + e.getMessage());
             result = false;
@@ -86,7 +87,8 @@ public class Base64ImagePlugin extends CordovaPlugin {
                 JSONArray imageUrls=data.getJSONArray(0);
                 result=this.convertImageToBase64FromUrl(imageUrls,callbackContext);
             }catch (JSONException e) {
-            Log.v(TAG, e.getMessage());
+            Log.v(TAG, "Exception from json in convertImageToBase64FromUrl action");
+             Log.v(TAG, e.getMessage());
             callbackContext.error("Exception :" + e.getMessage());
             result = false;
         }
@@ -156,7 +158,7 @@ public class Base64ImagePlugin extends CordovaPlugin {
             for(int i=0;i<imageUrls.length();i++){
                 JSONObject imageObject = imageUrls.getJSONObject(i);
                 String fileUrl=imageObject.getString("url");
-
+ Log.v(TAG, "file url ---"+fileUrl);
                 File file=new File(fileUrl);
                   
                 byte[] bFile = new byte[(int) file.length()];
@@ -202,6 +204,7 @@ public class Base64ImagePlugin extends CordovaPlugin {
             callbackContext.error("Exception :" + e.getMessage());
             result = false;
         }catch (JSONException e) {
+             Log.v(TAG, "my json exception");
             Log.v(TAG, e.getMessage());
             callbackContext.error("Exception :" + e.getMessage());
             result = false;
