@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileInputStream
 import java.io.IOException;
 
 import org.apache.commons.codec.binary.Base64;
@@ -153,8 +154,8 @@ public class Base64ImagePlugin extends CordovaPlugin {
         try {
 
             for(int i=0;i<imageUrls.length;i++){
-                JSONObject object = imageUrls.getJSONObject(i);
-                String fileUrl=object.getString("url");
+                JSONObject imageObject = imageUrls.getJSONObject(i);
+                String fileUrl=imageObject.getString("url");
 
                 File file=new File(fileUrl);
                   
@@ -168,14 +169,21 @@ public class Base64ImagePlugin extends CordovaPlugin {
                 String filename=file.getName();
                 int extensionIndex = filename.lastIndexOf(".");
                 String extension = filename.substring(extensionIndex + 1);
-                switch (extension) {
+                if("jpeg".equals(extension)){
+                    base64String="data:image/jpeg;base64,"+base64String;
+                }else if("png".equals(extension)){
+                    base64String="data:image/png;base64,"+base64String;
+                }else if("gif".equals(extension)){
+                    base64String="data:image/gif;base64,"+base64String;
+                }
+               /* switch (extension) {
                 case "jpeg":base64String="data:image/jpeg;base64,"+base64String;
                 break;
                 case "png":base64String="data:image/png;base64,"+base64String;
                 break;
                 case "gif":base64String="data:image/gif;base64,"+base64String;
                 break;
-                }
+                }*/
                 JSONObject object=new JSONObject();
                 object.put("url", base64String);
                 base64StringArray.put(object);
