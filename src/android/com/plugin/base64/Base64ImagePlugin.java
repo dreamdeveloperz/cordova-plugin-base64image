@@ -163,7 +163,7 @@ public class Base64ImagePlugin extends CordovaPlugin {
                 inputstream.read(bFile);
                 inputstream.close();
                 String base64String=Base64.encodeBase64String(bFile);
-                String filename=file.getName()
+                String filename=file.getName();
                 int extensionIndex = filename.lastIndexOf(".");
                 String extension = filename.substring(extensionIndex + 1);
                 switch (extension) {
