@@ -171,7 +171,7 @@ Log.v(TAG, "array count ---"+imageUrls.length());
             
                 inputstream.read(bFile);
                 inputstream.close();
-                Log.v(TAG,Arrays.toString(bFile));
+                //Log.v(TAG,Arrays.toString(bFile));
                 String base64String=new String(Base64.encodeBase64(bFile,false),"UTF-8");
                 
                 //String base64String=Base64.encodeBase64String(bFile);
@@ -193,6 +193,7 @@ Log.v(TAG, "array count ---"+imageUrls.length());
                 case "gif":base64String="data:image/gif;base64,"+base64String;
                 break;
                 }*/
+                Log.v(TAG,base64String);
                 JSONObject object=new JSONObject();
                 object.put("url", base64String);
                 base64StringArray.put(object);
