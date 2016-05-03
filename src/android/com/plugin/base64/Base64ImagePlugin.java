@@ -175,7 +175,7 @@ Log.v(TAG, "array count ---"+imageUrls.length());
                 String base64String=new String(Base64.encodeBase64(bFile,false),"UTF-8");
                 
                 //String base64String=Base64.encodeBase64String(bFile);
-                String filename=file.getName();
+                /*String filename=file.getName();
                 int extensionIndex = filename.lastIndexOf(".");
                 String extension = filename.substring(extensionIndex + 1);
                 if("jpeg".equals(extension)){
@@ -193,6 +193,7 @@ Log.v(TAG, "array count ---"+imageUrls.length());
                 case "gif":base64String="data:image/gif;base64,"+base64String;
                 break;
                 }*/
+                base64String="data:image/png;base64,"+base64String;
                 Log.v(TAG,base64String);
                 JSONObject object=new JSONObject();
                 object.put("url", base64String);
