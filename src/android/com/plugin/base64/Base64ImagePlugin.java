@@ -20,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -170,6 +171,7 @@ Log.v(TAG, "array count ---"+imageUrls.length());
             
                 inputstream.read(bFile);
                 inputstream.close();
+                Log.v(TAG,Arrays.toString(bFile));
                 String base64String=Base64.encodeBase64String(bFile);
                 String filename=file.getName();
                 int extensionIndex = filename.lastIndexOf(".");
