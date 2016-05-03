@@ -160,7 +160,7 @@ Log.v(TAG, "array count ---"+imageUrls.length());
                 Log.v(TAG,imageUrls.toString());
                // JSONObject imageObject = imageUrls.getJSONObject(i);
                 Log.v(TAG, "start 2");
-                String fileUrl=imageUrls.getString(i);
+                String fileUrl=imageUrls.getString(i).substring(7);
  Log.v(TAG, "file url ---"+fileUrl);
                 File file=new File(fileUrl);
                   
