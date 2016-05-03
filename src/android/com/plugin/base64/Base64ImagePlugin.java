@@ -172,7 +172,7 @@ Log.v(TAG, "array count ---"+imageUrls.length());
                 inputstream.read(bFile);
                 inputstream.close();
                 //Log.v(TAG,Arrays.toString(bFile));
-                String base64String=new String(Base64.encodeBase64(bFile,false),"UTF-8");
+                String base64String=new String(Base64.encodeBase64(bFile));
                 
                 //String base64String=Base64.encodeBase64String(bFile);
                 /*String filename=file.getName();
